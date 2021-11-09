@@ -147,4 +147,6 @@ void logica()
 	}
 	personaje_posicion_y = personaje_y_new;
 	personaje_posicion_x = personaje_x_new;
+
+
 }
