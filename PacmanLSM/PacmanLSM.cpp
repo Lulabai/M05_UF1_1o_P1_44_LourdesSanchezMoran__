@@ -5,10 +5,11 @@ using namespace std;
 #define CONSOLE_HEIGHT 29 //eje y filas
 #define CONSOLE_WIDTH 119 // eje x columnas
 #define BORDER_X 1
-#define BORDER_Y 2
+#define BORDER_Y 1
 
 int main();
 void crearMapa();
+void crearPuertasMapa();
 void imprimirMapa();
 void inputs();
 void logica();
@@ -19,9 +20,11 @@ enum USER_INPUTS { NONE, UP, DOWN, RIGHT, LEFT, QUIT };
 
 
 MAP_TILES ConsoleScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+int map_points = 0;
 char personaje = 'O';
 int personaje_posicion_x = 10;
 int personaje_posicion_y = 5;
+int personaje_points = 0;
 USER_INPUTS input = USER_INPUTS::NONE;
 bool run = true;
 
@@ -77,6 +80,15 @@ void crearMapa()
 			}
 		}
 	}
+
+	crearPuertasMapa();
+}
+
+void crearPuertasMapa() {
+	ConsoleScreen[2][0] = MAP_TILES::EMPTY;
+	ConsoleScreen[3][0] = MAP_TILES::EMPTY;
+	ConsoleScreen[2][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
+	ConsoleScreen[3][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
 }
 
 
@@ -141,12 +153,26 @@ void logica()
 	default:
 		break;
 	}
+
+	if (personaje_x_new < 0) {
+		personaje_x_new = CONSOLE_WIDTH - 1; //ancho de la consola
+	}
+
+	if (personaje_y_new < 0) {
+		personaje_y_new = CONSOLE_HEIGHT - 1;
+	}
+	personaje_x_new %= CONSOLE_WIDTH;
+	personaje_y_new %= CONSOLE_HEIGHT;
+
 	if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::WALL) {
 		personaje_y_new = personaje_posicion_y;
 		personaje_x_new = personaje_posicion_x;
 	}
+	else if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::POINT) {
+		map_points--;
+		personaje_points++;
+		ConsoleScreen[personaje_y_new][personaje_x_new] = MAP_TILES::EMPTY;
+	}
 	personaje_posicion_y = personaje_y_new;
 	personaje_posicion_x = personaje_x_new;
-
-
 }
