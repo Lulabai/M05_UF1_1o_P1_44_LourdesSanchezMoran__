@@ -19,6 +19,7 @@ void crearPointMaps();
 void imprimirMapa();
 void inputs();
 void logica();
+void imprimirScore();
 
 
 
@@ -40,14 +41,14 @@ int main()
 {
 	crearMapa();
 	imprimirMapa();
-
+	imprimirScore();
 
 
 	while (run) {
 		inputs();
 		logica();
 		imprimirMapa();
-
+		imprimirScore();
 	}
 }
 
@@ -244,4 +245,9 @@ void logica()
 	}
 	personaje_posicion_y = personaje_y_new;
 	personaje_posicion_x = personaje_x_new;
+}
+
+
+void imprimirScore() {
+	cout << "Score: " << score << endl;
 }
