@@ -15,6 +15,7 @@ using namespace std;
 int main();
 void crearMapa();
 void crearPuertasMapa();
+void crearPointMaps();
 void imprimirMapa();
 void inputs();
 void logica();
@@ -69,6 +70,7 @@ void imprimirMapa()
 	}
 }
 
+
 void crearMapa()
 {
 	for (int y = 0; y < CONSOLE_HEIGHT; y++)
@@ -91,6 +93,58 @@ void crearMapa()
 	}
 	crearPointMaps();
 	crearPuertasMapa();
+}
+
+
+void crearPointMaps() {
+	ConsoleScreen[5][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][72] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][73] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][74] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][75] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][76] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][77] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[5][78] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][72] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][73] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][74] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][75] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][76] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][77] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[10][78] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[9][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[8][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[7][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[6][71] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[9][78] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[8][78] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[7][78] = MAP_TILES::POINT_MAP;
+	map_points++;
+	ConsoleScreen[6][78] = MAP_TILES::POINT_MAP;
+	map_points++;
 }
 
 
@@ -136,6 +190,7 @@ void inputs()
 	}
 
 }
+
 
 void logica()
 {
