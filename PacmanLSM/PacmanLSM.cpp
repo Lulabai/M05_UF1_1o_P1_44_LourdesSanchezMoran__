@@ -1,4 +1,9 @@
 #include <iostream>
+#include <conio.h>
+#include <Windows.h>
+
+#pragma execution_character_set("UTF-8")
+
 using namespace std;
 
 
@@ -15,16 +20,17 @@ void inputs();
 void logica();
 
 
-enum MAP_TILES { EMPTY = ' ', WALL = '#', POINT = '.' };
+
+enum MAP_TILES { EMPTY = ' ', WALL = '#', POINT_MAP = char(248) };
 enum USER_INPUTS { NONE, UP, DOWN, RIGHT, LEFT, QUIT };
 
 
 MAP_TILES ConsoleScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
 int map_points = 0;
-char personaje = 'O';
+char personaje = char(219);
 int personaje_posicion_x = 10;
 int personaje_posicion_y = 5;
-int personaje_points = 0;
+int score = 0;
 USER_INPUTS input = USER_INPUTS::NONE;
 bool run = true;
 
@@ -33,13 +39,16 @@ int main()
 {
 	crearMapa();
 	imprimirMapa();
+
+
+
 	while (run) {
 		inputs();
 		logica();
 		imprimirMapa();
+
 	}
 }
-
 
 void imprimirMapa()
 {
@@ -80,9 +89,10 @@ void crearMapa()
 			}
 		}
 	}
-
+	crearPointMaps();
 	crearPuertasMapa();
 }
+
 
 void crearPuertasMapa() {
 	ConsoleScreen[2][0] = MAP_TILES::EMPTY;
@@ -95,7 +105,9 @@ void crearPuertasMapa() {
 void inputs()
 {
 	char input_raw;
-	cin >> input_raw;
+	cout << "Introduce un comando: ";
+	input_raw = _getch();
+	//cin >> input_raw;
 	switch (input_raw)
 	{
 	case 'W':
@@ -154,6 +166,7 @@ void logica()
 		break;
 	}
 
+
 	if (personaje_x_new < 0) {
 		personaje_x_new = CONSOLE_WIDTH - 1; //ancho de la consola
 	}
@@ -164,13 +177,14 @@ void logica()
 	personaje_x_new %= CONSOLE_WIDTH;
 	personaje_y_new %= CONSOLE_HEIGHT;
 
+
 	if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::WALL) {
 		personaje_y_new = personaje_posicion_y;
 		personaje_x_new = personaje_posicion_x;
 	}
-	else if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::POINT) {
+	else if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::POINT_MAP) {
 		map_points--;
-		personaje_points++;
+		score++;
 		ConsoleScreen[personaje_y_new][personaje_x_new] = MAP_TILES::EMPTY;
 	}
 	personaje_posicion_y = personaje_y_new;
