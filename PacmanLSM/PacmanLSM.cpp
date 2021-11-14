@@ -2,15 +2,14 @@
 #include <conio.h>
 #include <Windows.h>
 
-#pragma execution_character_set("UTF-8")
 
 using namespace std;
-
 
 #define CONSOLE_HEIGHT 29 //eje y filas
 #define CONSOLE_WIDTH 119 // eje x columnas
 #define BORDER_X 1
 #define BORDER_Y 1
+
 
 int main();
 void crearMapa();
@@ -20,6 +19,7 @@ void imprimirMapa();
 void inputs();
 void logica();
 void imprimirScore();
+void winTheGame();
 
 
 
@@ -37,6 +37,8 @@ USER_INPUTS input = USER_INPUTS::NONE;
 bool run = true;
 
 
+
+
 int main()
 {
 	crearMapa();
@@ -49,8 +51,10 @@ int main()
 		logica();
 		imprimirMapa();
 		imprimirScore();
+		winTheGame();
 	}
 }
+
 
 void imprimirMapa()
 {
@@ -69,6 +73,7 @@ void imprimirMapa()
 		}
 		cout << endl;
 	}
+	Sleep(100);
 }
 
 
@@ -92,6 +97,7 @@ void crearMapa()
 			}
 		}
 	}
+
 	crearPointMaps();
 	crearPuertasMapa();
 }
@@ -130,21 +136,21 @@ void crearPointMaps() {
 	map_points++;
 	ConsoleScreen[10][78] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[9][71] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[9][40] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[8][71] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[8][40] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[7][71] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[7][40] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[6][71] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[6][40] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[9][78] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[9][50] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[8][78] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[8][50] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[7][78] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[7][50] = MAP_TILES::POINT_MAP;
 	map_points++;
-	ConsoleScreen[6][78] = MAP_TILES::POINT_MAP;
+	ConsoleScreen[6][50] = MAP_TILES::POINT_MAP;
 	map_points++;
 }
 
@@ -160,9 +166,8 @@ void crearPuertasMapa() {
 void inputs()
 {
 	char input_raw;
-	cout << "Introduce un comando: ";
 	input_raw = _getch();
-	//cin >> input_raw;
+
 	switch (input_raw)
 	{
 	case 'W':
@@ -249,5 +254,12 @@ void logica()
 
 
 void imprimirScore() {
-	cout << "Score: " << score << endl;
+	cout << "Score: " << score; //aparecerá justo debajo del tablero
+}
+
+
+void winTheGame() {
+	if (score == 24) {
+		cout << " You win!" << endl; //aparecerá justo al lado de los puntos conseguidos
+	}
 }
