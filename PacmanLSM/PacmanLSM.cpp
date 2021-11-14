@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
+#include <stdlib.h>
 
 
 using namespace std;
@@ -53,6 +54,9 @@ int main()
 		imprimirScore();
 		winTheGame();
 	}
+
+	//return 0; Es otra forma de salir del juego
+	exit(EXIT_SUCCESS);
 }
 
 
